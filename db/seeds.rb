@@ -40,7 +40,7 @@ puts 'Creating reviews...'
 cocktails = Cocktail.all
 cocktails.each do |cocktail|
   5.times do
-    rating = rand(0..5)
+    rating = rand(1..5)
     review = Review.new(rating: rating, content: Faker::Coffee.unique.notes)
     review.cocktail = cocktail
     review.save

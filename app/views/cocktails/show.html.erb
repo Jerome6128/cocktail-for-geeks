@@ -11,5 +11,14 @@
     </li>
   <% end %>
 </ul>
+<%= render "doses/new", cocktail: @cocktail, dose: @dose %>
 
-<%= render "doses/new", cocktail: @cocktail, dose: Dose.new %>
+<hr>
+<ul class="list-group">
+  <% @cocktail.reviews.each do |review| %>
+    <li class="list-group-item"><%= '*'*review.rating.to_i %> -
+      <%= review.content %>
+    </li>
+  <% end %>
+</ul>
+<%= render "reviews/new", cocktail: @cocktail, review: @review %>
