@@ -14,7 +14,7 @@ Cocktail.destroy_all
 Ingredient.destroy_all
 
 puts 'Ingredients seeding'
-puts 'Creating ingredients..."-'
+puts 'Creating ingredients...'
 
 Ingredient.create(name: "Ice")
 Ingredient.create(name: "Mint leaves")
@@ -26,13 +26,25 @@ ingredients.each do |ingredient|
 end
 
 puts 'Cocktails seeding'
-puts 'Creating cocktails..."-'
+puts 'Creating cocktails...'
 100.times do
   file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
   cocktail = Cocktail.create(name: Faker::ProgrammingLanguage.unique.name)
   #cocktail.url = "ajldwzjt25gm8mts0jbz"
   #cocktail.save
   #cocktail.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+end
+
+puts 'Reviews seeding'
+puts 'Creating reviews...'
+cocktails = Cocktail.all
+cocktails.each do |cocktail|
+  5.times do
+    rating = rand(0..5)
+    review = Review.new(rating: rating, content: Faker::Coffee.unique.notes)
+    review.cocktail = cocktail
+    review.save
+  end
 end
 
 puts 'Doses seeding'
