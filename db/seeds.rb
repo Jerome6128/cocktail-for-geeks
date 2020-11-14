@@ -52,7 +52,7 @@ puts 'Creating doses..."-'
 cocktails = Cocktail.all
 ingredients = Ingredient.all
 cocktails.each do |cocktail|
-  7.times do
+  5.times do
     description = rand(1..5)
     dose = Dose.new(description: description)
     dose.cocktail = cocktail
