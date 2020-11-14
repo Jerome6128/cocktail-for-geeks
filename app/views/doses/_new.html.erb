@@ -2,7 +2,7 @@
 <h2>Add a new dose </h2>
 <hr>
 <%= simple_form_for [cocktail, dose] do |f| %>
-  <%= f.association :ingredient, input_html: { class: 'select2'} %>
+  <%= f.association :ingredient, input_html: { class: 'select2'}, include_blank: false, include_hidden: false %>
   <%= f.input :description %>
   <%= f.submit %>
 <% end %>
