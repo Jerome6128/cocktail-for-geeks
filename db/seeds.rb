@@ -27,7 +27,8 @@ end
 
 puts 'Cocktails seeding'
 puts 'Creating cocktails...'
-100.times do
+50.times do
+  sleep(1)
   cocktail = Cocktail.create(name: Faker::ProgrammingLanguage.unique.name)
   file = URI.open('https://source.unsplash.com/500x400/?cocktail')
   filename = cocktail.name
