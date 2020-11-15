@@ -2,7 +2,7 @@
   <div class="banner-content">
     <h1>Cocktails for geeks</h1>
     <p>Awesome beverages for developers only && by developers only :-)</p>
-    <%= link_to 'Create a new cocktail', new_cocktail_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Create a new cocktail', new_cocktail_path, class: "btn btn-success text-white btn-lg" %>
   </div>
 </div>
 
@@ -10,7 +10,7 @@
   <div class="row">
     <% @cocktails.each do |cocktail| %>
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/500x400/?cocktail');">
+        <div class="card mb-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/500x400/?cocktail');">
           <div class="card-description">
             <h2><%= cocktail.name %></h2>
           </div>
