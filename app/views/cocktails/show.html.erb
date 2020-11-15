@@ -1,24 +1,60 @@
-<h1><%= @cocktail.name %></h2>
-<%#= link_to 'Add a new dose', new_cocktail_dose_path(@cocktail) %>
-<ul class="list-group">
-  <% @cocktail.doses.each do |dose| %>
-    <li class="list-group-item"><%= dose.description %> cl. -
-      <%= dose.ingredient.name %> -
-      <%= link_to '(remove)',
-                  dose_path(dose),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" }%>
-    </li>
-  <% end %>
-</ul>
-<%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+<div class="container">
+  <div class="row align-items-center justify-content-between">
+    <h1><%= @cocktail.name %></h2>
+    <h3><%= link_to "Back to all cocktails", cocktails_path %></h3>
+  </div>
 
-<hr>
-<ul class="list-group">
-  <% @cocktail.reviews.each do |review| %>
-    <li class="list-group-item"><%= '*'*review.rating.to_i %> -
-      <%= review.content %>
-    </li>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <hr>
+      <h3>Recipe</h3>
+      <hr>
+      <table class="table table-striped">
+        <tbody>
+          <thead class="text-white bg-success">
+            <th>Ingredient</th>
+            <th>Description</th>
+            <th>Action</th>
+          </thead>
+          <% @cocktail.doses.each do |dose| %>
+          <tr>
+            <td><%= dose.ingredient.name %></td>
+            <td><%= dose.description %> cl.</td>
+            <td>
+              <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="far fa-trash-alt destroy_dose"></i>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+    </div>
+  </div>
+
+  <hr>
+  <h3>Reviews</h3>
+  <hr>
+  <% if @cocktail.reviews.empty? %>
+    <p>Be the first to let a review</p>
+  <% else %>
+    <ul class="list-group">
+      <% @cocktail.reviews.each do |review| %>
+        <li class="list-group-item d-flex align-items-center">
+          <span class="badge badge-success badge-pill mr-3">
+            <% counter = 0 %>
+            <% 5.times do %>
+              <i class="text-white <%= review.rating > counter ? 'fas fa-star' : 'far fa-star' %>"></i>
+              <% counter += 1 %>
+            <% end %>
+          </span>
+          <%= review.content %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
-<%= render "reviews/new", cocktail: @cocktail, review: @review %>
+      <%= render "reviews/new", cocktail: @cocktail, review: @review %>
+</div>
