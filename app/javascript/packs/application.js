@@ -13,10 +13,16 @@ import 'bootstrap';
 
 import { initSelect2 } from '../components/init_select2';
 import { loadDynamicBannerText } from '../components/banner';
+import { initSweetalert } from '../components/init_sweetalert';
 
 document.addEventListener("turbolinks:load", function() {
   initSelect2();
   loadDynamicBannerText();
+  initSweetalert('.destroy_dose', {
+  title: "A nice alert",
+  text: "This is a great alert, isn't it?",
+  icon: "success"
+});
 });
 
 
